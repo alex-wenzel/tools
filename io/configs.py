@@ -16,7 +16,7 @@ def read_config_kv(conf_path):
     """Reads a file of key value pairs separated by 1 '=', one on each line"""
     outd = {}
     for line in file_iterator.iterate(open(conf_path)):
-        if line[0] != '#':
+        if line[0] != '#' and line != "\n":
             line = line.strip('\n')
             try:
                 key, value = line.split('=')
