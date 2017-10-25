@@ -10,7 +10,7 @@ import tools.io.file_iterator as file_iterator
 class Bed:
     """A class representing a bed format file"""
     def __init__(self, bedpath):
-        """Loads all lines in bedpath into BedLine objects"""
+        """Loads all lines in bedpath into BedLine objects."""
         self.lines = []
         for line in file_iterator.iterate(open(bedpath)):
             self.lines.append(BedLine(line))
