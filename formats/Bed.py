@@ -12,8 +12,9 @@ class Bed:
     def __init__(self, bedpath):
         """Loads all lines in bedpath into BedLine objects."""
         self.lines = []
-        for line in file_iterator.iterate(open(bedpath)):
-            self.lines.append(BedLine(line))
+        if bedpath != None:
+            for line in file_iterator.iterate(open(bedpath)):
+                self.lines.append(BedLine(line))
 
     def __iter__(self):
         for line in self.lines:
