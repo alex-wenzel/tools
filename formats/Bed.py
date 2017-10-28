@@ -16,9 +16,20 @@ class Bed:
             for line in file_iterator.iterate(open(bedpath)):
                 self.lines.append(BedLine(line))
 
+    """
+    Operators
+    """
+
+    def append(self, line):
+        """Takes a new BedLine object and appends it to self.lines"""
+        self.lines.append(line)
+
     def __iter__(self):
         for line in self.lines:
             yield(line)
+
+    def __str__(self):
+        return ''.join([str(line) for line in self.lines])
         
 class BedLine:
     """A class representing a single line of bed file data"""
