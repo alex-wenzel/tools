@@ -48,6 +48,8 @@ class Sam2Bed:
         for rec in self.sam.fetch():
             new_bedline = Bed.BedLine(None)
             new_bedline.chromosome = rec.reference_name
+            if "chr" not in new_bedline.chromosome:
+                new_bedline.chromosome = "chr"+new_bedline.chromosome
             new_bedline.start = rec.reference_start
             new_bedline.end = rec.reference_end
             self.bed.append(new_bedline)
