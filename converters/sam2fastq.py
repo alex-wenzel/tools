@@ -25,17 +25,22 @@ class Sam2Fastq:
         self.collate_outpath = self.sampath.split('/')[-1].split('.')[0]+"_collated"
 
         self.collate()
-        #self.fastq()
-        #subprocess.call("rm "+self.collate_outpath, shell=True)
+        self.fastq()
+        subprocess.call("rm "+self.collate_outpath+".sam", shell=True)
     
     """
     Collate wrapper
     """
 
     def collate(self):
-        """Wrapper around the collate function"""
+        """Wrapper around the samtools collate function"""
         cmd = self.samtoolspath+" collate -u --output-fmt SAM "
         cmd += self.sampath+" "+self.collate_outpath
+        subprocess.call(cmd, shell=True)
+
+    def fastq(self):
+        """Wrapper around the samtools fastq function"""
+        cmd = self.samtoolspath+" fastq "+self.collate_outpath+".sam > "+self.outpath
         subprocess.call(cmd, shell=True)
 
 if __name__ == "__main__":
