@@ -6,8 +6,6 @@ bed file.  Depends on pysam
 #Global
 import pysam
 
-#Repos
-
 #Local
 import tools.formats.Bed as Bed
 
