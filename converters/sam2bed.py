@@ -49,7 +49,10 @@ class Sam2Bed:
             if "chr" not in new_bedline.chromosome:
                 new_bedline.chromosome = "chr"+new_bedline.chromosome
             new_bedline.start = rec.reference_start
-            new_bedline.end = new_bedline.start + len(rec.query_sequence)
+            try:
+                new_bedline.end = new_bedline.start + len(rec.query_sequence)
+            except TypeError:
+                new_bedline.end = rec.reference_end
             self.bed.append(new_bedline)
 
     """
