@@ -17,6 +17,24 @@ class Bed:
                 self.lines.append(BedLine(line))
 
     """
+    Check if region in file
+    """
+
+    def overlap(self, chrom, start, end):
+        """Returns True if this bed file has any overlap with the
+        input chromosome, start, and end"""
+        for line in self.lines:
+            if chrom != line.chromosome:
+                continue
+            if start <= line.start and end >= line.start:
+                return True
+            if start <= line.end and end >= line.end:
+                return True
+            if start >= line.start and end <= line.end:
+                return True
+        return False
+
+    """
     Operators
     """
 
