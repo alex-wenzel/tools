@@ -34,6 +34,14 @@ class Bed:
                 return True
         return False
 
+    def contains(self, chrom, pos):
+        """Checks if a single chromosome:position coordinate
+        is in this bedfile"""
+        for line in self.lines:
+            if chrom == line.chromosome and line.start <= pos <= line.end:
+                return True
+        return False
+
     """
     Operators
     """
